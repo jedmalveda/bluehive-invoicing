@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::group(["middleware" => 'auth'], function (){
-    Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
     // Invoice
     Route::get('/invoice', [InvoiceController::class,'index'])->name('invoice.index');
     Route::get('/invoice/create', [InvoiceController::class,'create'])->name('invoice.create');
