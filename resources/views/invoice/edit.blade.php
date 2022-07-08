@@ -17,6 +17,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
+                        @if(Session::has('message'))
+                            <p class="alert alert-info">{{ Session::get('message') }}</p>
+                        @endif
                         <form action="{{ route('invoice.update', $invoice->id) }}" method="post">
                             @method('PUT')
                             @csrf
