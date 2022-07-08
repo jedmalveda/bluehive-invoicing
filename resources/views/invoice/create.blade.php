@@ -63,18 +63,6 @@
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>
-                                                <input class="form-control" type="text" name="product_name[]">
-                                            </td>
-                                            <td>
-                                                <input class="form-control" type="number" name="product_qty[]" min="1">
-                                            </td>
-                                            <td>
-                                                <input class="form-control" type="text" name="price[]">
-                                            </td>
-                                            <td>
-                                                <input class="form-control" type="text" name="sub_total[]" disabled>
-                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -113,10 +101,10 @@
                         <input class="form-control" type="number" name="product_qty[]" min="1">
                     </td>
                     <td>
-                        <input class="form-control" type="text" name="price[]">
+                        <input class="form-control" type="text" name="product_price[]">
                     </td>
                     <td>
-                        <input class="form-control" type="text" name="sub_total[]" disabled>
+                        <input class="form-control" type="text" name="product_subtotal[]" disabled>
                     </td>
                 </tr>`;
                 $("#products_table tr:last").after(row_template);
