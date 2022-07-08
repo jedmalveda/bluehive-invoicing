@@ -23,13 +23,13 @@
                                 <div class="col-3">
                                     <div class="form-group mb-3">
                                         <label for="invoice_number">Invoice #</label>
-                                        <input type="text" class="form-control" name="invoice_number" id="invoice_number">
+                                        <input type="text" class="form-control" name="invoice_number" id="invoice_number" required>
                                     </div>
                                 </div>
                                 <div class="col-4 offset-5">
                                     <div class="form-group mb-3">
                                         <label for="invoice_date">Date</label>
-                                        <input type="date" class="form-control" name="invoice_date" id="invoice_date">
+                                        <input type="date" class="form-control" name="invoice_date" id="invoice_date" required>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                 <div class="col-4 offset-8">
                                     <div class="form-group mb-3">
                                         <label for="customer_name">Customer Name</label>
-                                        <input type="text" class="form-control" name="customer_name" id="customer_name">
+                                        <input type="text" class="form-control" name="customer_name" id="customer_name" required>
                                     </div>
                                 </div>
                             </div>
@@ -63,6 +63,9 @@
                                         </thead>
                                         <tbody>
                                         <tr>
+{{--                                            <td>--}}
+{{--                                                <input class="form-control" type="text" name="product_name[]" required>--}}
+{{--                                            </td>--}}
                                         </tr>
                                         </tbody>
                                     </table>
@@ -73,7 +76,7 @@
                                     <p class="text-bold">Total:</p>
                                 </div>
                                 <div class="col-1">
-                                    <p>0.00</p>
+                                    <p id="total_value">0.00</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -95,19 +98,36 @@
             $("#add_item_button").on('click', function (){
                 var row_template = `<tr>
                     <td>
-                        <input class="form-control" type="text" name="product_name[]">
+                        <input class="form-control" type="text" name="product_name[]" required>
                     </td>
                     <td>
-                        <input class="form-control" type="number" name="product_qty[]" min="1">
+                        <input class="form-control" type="number" name="product_qty[]" min="1" required value="1">
                     </td>
                     <td>
-                        <input class="form-control" type="text" name="product_price[]">
+                        <input class="form-control" type="text" name="product_price[]" required value="0">
                     </td>
                     <td>
                         <input class="form-control" type="text" name="product_subtotal[]" disabled>
                     </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" id="remove_item_button">Remove</button>
+                    </td>
                 </tr>`;
                 $("#products_table tr:last").after(row_template);
+            });
+
+            $("#products_table").on("click", "#remove_item_button", function(){
+                $(this).closest("tr").remove();
+            });
+
+            $(document).on("change", 'input[type=text][name="product_price[]"], input[type=number][name="product_qty[]"]', function(){
+                console.log('changed price changed');
+                var row = $(this).closest("tr");
+                var unit_price = row.find('input[type=text][name="product_price[]"]')
+                var qty = row.find('input[type=number][name="product_qty[]"]');
+                var sub_total = row.find('input[type=text][name="product_subtotal[]"]');
+
+                sub_total.val(unit_price.val() * qty.val());
             });
         });
     </script>

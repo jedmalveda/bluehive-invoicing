@@ -61,6 +61,7 @@
                                             <th>Quantity</th>
                                             <th>Price</th>
                                             <th>Sub Total</th>
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -77,6 +78,9 @@
                                             </td>
                                             <td>
                                                 <input class="form-control" type="text" name="product_subtotal[]" disabled value="{{ $product->sub_total }}">
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger" id="remove_item_button">Remove</button>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -122,8 +126,25 @@
                     <td>
                         <input class="form-control" type="text" name="product_subtotal[]" disabled>
                     </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" id="remove_item_button">Remove</button>
+                    </td>
                 </tr>`;
                 $("#products_table tr:last").after(row_template);
+            });
+
+            $("#products_table").on("click", "#remove_item_button", function(){
+               $(this).closest("tr").remove();
+            });
+
+            $(document).on("change", 'input[type=text][name="product_price[]"], input[type=number][name="product_qty[]"]', function(){
+                console.log('changed price changed');
+                var row = $(this).closest("tr");
+                var unit_price = row.find('input[type=text][name="product_price[]"]')
+                var qty = row.find('input[type=number][name="product_qty[]"]');
+                var sub_total = row.find('input[type=text][name="product_subtotal[]"]');
+
+                sub_total.val(unit_price.val() * qty.val());
             });
         });
     </script>

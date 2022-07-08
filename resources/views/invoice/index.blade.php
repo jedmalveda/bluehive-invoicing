@@ -28,7 +28,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if($invoices != null)
+                            @if($invoices->count() == 0)
+                                <tr>
+                                    <td colspan="4" class="text-center"> NO INVOICES </td>
+                                </tr>
+                            @else
                                 @foreach($invoices as $invoice)
                                     <tr>
                                         <td>{{ $invoice->id }}</td>
@@ -38,10 +42,6 @@
                                         <td><a href="{{ route('invoice.edit', $invoice->id) }}" class="btn btn-secondary">View</a></td>
                                     </tr>
                                 @endforeach
-                            @else
-                                <tr>
-                                    <td colspan="4" class="text-center"> NO INVOICES </td>
-                                </tr>
                             @endif
                             </tbody>
                         </table>
