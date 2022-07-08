@@ -130,13 +130,18 @@
             });
 
             $(document).on("change", 'input[type=text][name="product_price[]"], input[type=number][name="product_qty[]"]', function(){
-                console.log('changed price changed');
                 var row = $(this).closest("tr");
                 var unit_price = row.find('input[type=text][name="product_price[]"]')
                 var qty = row.find('input[type=number][name="product_qty[]"]');
                 var sub_total = row.find('input[type=text][name="product_subtotal[]"]');
 
                 sub_total.val(unit_price.val() * qty.val());
+
+                var total = 0;
+                $("#products_table").find('input[type=text][name="product_subtotal[]"]').each(function(){
+                    total += parseFloat($(this).val());
+                });
+                $("#total_value").text(total);
             });
         });
     </script>

@@ -93,7 +93,7 @@
                                     <p class="text-bold">Total:</p>
                                 </div>
                                 <div class="col-1">
-                                    <p>{{ $invoice->total_price }}</p>
+                                    <p id="total_value">{{ $invoice->total_price }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -145,6 +145,12 @@
                 var sub_total = row.find('input[type=text][name="product_subtotal[]"]');
 
                 sub_total.val(unit_price.val() * qty.val());
+
+                var total = 0;
+                $("#products_table").find('input[type=text][name="product_subtotal[]"]').each(function(){
+                    total += parseFloat($(this).val());
+                });
+                $("#total_value").text(total);
             });
         });
     </script>
