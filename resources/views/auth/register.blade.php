@@ -7,9 +7,7 @@
 @section('content')
     <div class="login-box">
         @if ($errors->any())
-            <div>
-                <div>{{ __('Whoops! Something went wrong.') }}</div>
-
+            <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>

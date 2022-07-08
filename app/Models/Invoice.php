@@ -24,6 +24,6 @@ class Invoice extends Model
             $total_price += $invoice_product->qty * $invoice_product->unit_price;
         }
 
-        return $total_price;
+        return number_format($total_price,2);
     }
 }

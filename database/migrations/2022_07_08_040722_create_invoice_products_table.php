@@ -18,7 +18,7 @@ class CreateInvoiceProductsTable extends Migration
             $table->foreignId('invoice_id')->constrained();
             $table->string('product_name');
             $table->string('qty');
-            $table->string("unit_price");
+            $table->decimal("unit_price", 15, 2);
             $table->timestamps();
         });
     }
