@@ -15,6 +15,15 @@
 
         <section class="content">
             <div class="container-fluid">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-12">
                         <form action="{{ route('invoice.store') }}" method="post">
@@ -23,13 +32,13 @@
                                 <div class="col-3">
                                     <div class="form-group mb-3">
                                         <label for="invoice_number">Invoice #</label>
-                                        <input type="text" class="form-control" name="invoice_number" id="invoice_number" required>
+                                        <input type="text" class="form-control" name="invoice_number" id="invoice_number" required value="{{ old('invoice_number') }}">
                                     </div>
                                 </div>
                                 <div class="col-4 offset-5">
                                     <div class="form-group mb-3">
                                         <label for="invoice_date">Date</label>
-                                        <input type="date" class="form-control" name="invoice_date" id="invoice_date" required>
+                                        <input type="date" class="form-control" name="invoice_date" id="invoice_date" required value="{{ old('invoice_date') }}">
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +46,7 @@
                                 <div class="col-4 offset-8">
                                     <div class="form-group mb-3">
                                         <label for="customer_name">Customer Name</label>
-                                        <input type="text" class="form-control" name="customer_name" id="customer_name" required>
+                                        <input type="text" class="form-control" name="customer_name" id="customer_name" required value="{{ old('customer_name') }}">
                                     </div>
                                 </div>
                             </div>

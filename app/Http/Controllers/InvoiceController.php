@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateInvoiceRequest;
 use App\Models\Invoice;
 use App\Models\InvoiceProduct;
 use Carbon\Carbon;
@@ -20,7 +21,7 @@ class InvoiceController extends Controller
         return view('invoice.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateInvoiceRequest $request)
     {
 
         // Create invoice.
