@@ -50,8 +50,8 @@
                         {{ __('Already registered?') }}
                     </a>
 
-                    <div>
-                        <button type="submit">
+                    <div class="form-group mt-4">
+                        <button class="btn btn-primary" type="submit">
                             {{ __('Register') }}
                         </button>
                     </div>
