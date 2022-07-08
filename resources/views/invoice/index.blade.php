@@ -82,7 +82,8 @@
                 "columnDefs": [{
                     "targets": 5,
                     "orderable": false
-                }]
+                }],
+                "pageLength": 10
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
 
