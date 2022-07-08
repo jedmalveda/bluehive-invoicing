@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::view('dashboard', 'dashboard')
-	->name('dashboard')
-	->middleware(['auth', 'verified']);
+Route::group(["middleware" => 'auth'], function (){
+    Route::view('dashboard', 'dashboard')->name('dashboard');
+    // Invoice
+    Route::get('invoice/create', [InvoiceController::class,'create'])->name('invoice.create');
+    Route::post('/invoice', [InvoiceController::class,'store'])->name('invoice.store');
+});

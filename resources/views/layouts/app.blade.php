@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset("plugins/fontawesome-free/css/all.min.css") }}">
 
     <link rel="stylesheet" href="{{ asset("css/adminlte.min.css") }}">
-    <link rel="stylesheet" href="{{ asset("css/custom.css") }}">
+{{--    <link rel="stylesheet" href="{{ asset("css/custom.css") }}">--}}
     @yield('custom_css')
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
@@ -22,6 +22,6 @@
 <script src="{{ asset("plugins/jquery-ui/jquery-ui.min.js") }}"></script>
 <script src="{{ asset("plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
 <script src="{{ asset("js/adminlte.min.js") }}"></script>
-@yield('custom_scripts')
+@yield('page_scripts')
 </body>
 </html>
