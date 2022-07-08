@@ -85,4 +85,10 @@ class InvoiceController extends Controller
 
         return redirect()->route('invoice.edit', $request->invoice_id);
     }
+
+    public function destroy(Request $request)
+    {
+        Invoice::destroy($request->invoice_id);
+        return redirect()->route('invoice.index');
+    }
 }

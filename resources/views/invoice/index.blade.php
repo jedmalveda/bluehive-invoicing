@@ -39,7 +39,15 @@
                                         <td>{{ $invoice->customer_name }}</td>
                                         <td>{{ $invoice->total_price }}</td>
                                         <td>{{ $invoice->invoice_date }}</td>
-                                        <td><a href="{{ route('invoice.edit', $invoice->id) }}" class="btn btn-secondary">View</a></td>
+                                        <td>
+                                            <a href="{{ route('invoice.edit', $invoice->id) }}" class="btn btn-secondary">View</a>
+                                            <form action="{{ route('invoice.delete') }}" method="post" class="d-inline">
+                                                @method('DELETE')
+                                                @csrf
+                                                <input type="hidden" value="{{ $invoice->id }}" name="invoice_id">
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             @endif

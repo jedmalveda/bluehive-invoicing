@@ -26,4 +26,5 @@ Route::group(["middleware" => 'auth'], function (){
     Route::post('/invoice', [InvoiceController::class,'store'])->name('invoice.store');
     Route::get('/invoice/{id}/edit', [InvoiceController::class,'edit'])->name('invoice.edit');
     Route::put('/invoice/{id}', [InvoiceController::class,'update'])->name('invoice.update');
+    Route::delete('/invoice', [InvoiceController::class,'destroy'])->name('invoice.delete');
 });
