@@ -50,7 +50,6 @@ class InvoiceController extends Controller
     public function edit($id)
     {
         $invoice = Invoice::find($id);
-        dd($invoice);
-        return view('invoice.edit');
+        return view('invoice.edit', compact('invoice'));
     }
 }

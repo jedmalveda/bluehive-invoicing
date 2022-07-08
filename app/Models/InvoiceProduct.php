@@ -14,4 +14,9 @@ class InvoiceProduct extends Model
     {
         return $this->belongsTo(Invoice::class);
     }
+
+    public function getSubTotalAttribute()
+    {
+        return $this->qty * $this->unit_price;
+    }
 }
