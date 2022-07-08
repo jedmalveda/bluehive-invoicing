@@ -21,6 +21,8 @@ Route::get('/', function () {
 Route::group(["middleware" => 'auth'], function (){
     Route::view('dashboard', 'dashboard')->name('dashboard');
     // Invoice
-    Route::get('invoice/create', [InvoiceController::class,'create'])->name('invoice.create');
+    Route::get('/invoice', [InvoiceController::class,'index'])->name('invoice.index');
+    Route::get('/invoice/create', [InvoiceController::class,'create'])->name('invoice.create');
     Route::post('/invoice', [InvoiceController::class,'store'])->name('invoice.store');
+    Route::get('/invoice/{id}/edit', [InvoiceController::class,'edit'])->name('invoice.edit');
 });

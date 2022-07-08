@@ -18,6 +18,11 @@
                                 <p>New Invoice</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('invoice.index') }}" class="nav-link">
+                                <p>Invoice List</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 {{--<li class="nav-item">

@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
+    public function index()
+    {
+        $invoices = Invoice::all();
+        return view('invoice.index', compact('invoices'));
+    }
+
     public function create()
     {
         return view('invoice.create');
@@ -39,5 +45,12 @@ class InvoiceController extends Controller
         }
 
         InvoiceProduct::insert($product_array);
+    }
+
+    public function edit($id)
+    {
+        $invoice = Invoice::find($id);
+        dd($invoice);
+        return view('invoice.edit');
     }
 }
