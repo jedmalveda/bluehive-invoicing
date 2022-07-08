@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="{{ asset("plugins/fontawesome-free/css/all.min.css") }}">
 
     <link rel="stylesheet" href="{{ asset("css/adminlte.min.css") }}">
-{{--    <link rel="stylesheet" href="{{ asset("css/custom.css") }}">--}}
-    @yield('custom_css')
+    @yield('page_css')
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 <body class="sidebar-mini" style="height: auto;">

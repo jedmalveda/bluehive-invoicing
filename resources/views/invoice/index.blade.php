@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('page_css')
+    <link rel="stylesheet" href="{{ asset("plugins/datatables-bs4/css/dataTables.bootstrap4.min.css") }}">
+    <link rel="stylesheet" href="{{ asset("plugins/datatables-buttons/css/buttons.bootstrap4.min.css")}}">
+    <link rel="stylesheet" href="{{ asset("plugins/datatables-responsive/css/responsive.bootstrap4.min.css") }}">
+@endsection
+
 @section('content')
     <div class="content-wrapper" style="min-height: 1604.8px;">
 
@@ -20,7 +26,7 @@
                         @if(Session::has('message'))
                             <p class="alert alert-success">{{ Session::get('message') }}</p>
                         @endif
-                        <table class="table" id="products_table">
+                        <table class="table" id="invoice_table">
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -34,7 +40,7 @@
                             <tbody>
                             @if($invoices->count() == 0)
                                 <tr>
-                                    <td colspan="4" class="text-center"> NO INVOICES </td>
+                                    <td colspan="4" class="text-center"> NO INVOICES</td>
                                 </tr>
                             @else
                                 @foreach($invoices as $invoice)
@@ -45,7 +51,8 @@
                                         <td>{{ $invoice->total_price }}</td>
                                         <td>{{ $invoice->invoice_date }}</td>
                                         <td>
-                                            <a href="{{ route('invoice.edit', $invoice->id) }}" class="btn btn-secondary">View</a>
+                                            <a href="{{ route('invoice.edit', $invoice->id) }}"
+                                               class="btn btn-secondary">View</a>
                                             <form action="{{ route('invoice.delete') }}" method="post" class="d-inline">
                                                 @method('DELETE')
                                                 @csrf
@@ -66,5 +73,24 @@
 @endsection
 
 @section('page_scripts')
+    <script src="{{ asset("plugins/datatables/jquery.dataTables.min.js")}}"></script>
+    <script src="{{ asset("plugins/datatables-bs4/js/dataTables.bootstrap4.min.js")}}"></script>
+    <script>
+        $(function () {
+            $("#invoice_table").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
 
+    </script>
 @endsection
