@@ -21,20 +21,28 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Customer</th>
                                 <th>Total Price</th>
                                 <th>Invoice Date</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($invoices as $invoice)
+                            @if($invoices != null)
+                                @foreach($invoices as $invoice)
+                                    <tr>
+                                        <td>{{ $invoice->id }}</td>
+                                        <td>{{ $invoice->customer_name }}</td>
+                                        <td>{{ $invoice->total_price }}</td>
+                                        <td>{{ $invoice->invoice_date }}</td>
+                                        <td><a href="{{ route('invoice.edit', $invoice->id) }}" class="btn btn-secondary">View</a></td>
+                                    </tr>
+                                @endforeach
+                            @else
                                 <tr>
-                                    <td>{{ $invoice->id }}</td>
-                                    <td>{{ $invoice->total_price }}</td>
-                                    <td>{{ $invoice->invoice_date }}</td>
-                                    <td><a href="{{ route('invoice.edit', $invoice->id) }}" class="btn btn-secondary">View</a></td>
+                                    <td colspan="4" class="text-center"> NO INVOICES </td>
                                 </tr>
-                            @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </div>

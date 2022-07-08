@@ -17,8 +17,10 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <form action="{{ route('invoice.store') }}" method="post">
+                        <form action="{{ route('invoice.update', $invoice->id) }}" method="post">
+                            @method('PUT')
                             @csrf
+                            <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
                             <div class="row">
                                 <div class="col-3">
                                     <div class="form-group mb-3">
@@ -91,8 +93,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-6">
-                                    <button type="submit" class="btn btn-primary btn-block">Save Invoice</button>
+                                <div class="col-6 offset-6">
+                                    <button type="submit" class="btn btn-primary btn-block">Update Invoice</button>
                                 </div>
                             </div>
                         </form>
