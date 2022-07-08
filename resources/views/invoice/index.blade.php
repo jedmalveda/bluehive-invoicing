@@ -17,6 +17,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
+                        @if(Session::has('message'))
+                            <p class="alert alert-success">{{ Session::get('message') }}</p>
+                        @endif
                         <table class="table" id="products_table">
                             <thead>
                             <tr>

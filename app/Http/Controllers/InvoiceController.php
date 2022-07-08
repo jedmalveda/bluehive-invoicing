@@ -47,7 +47,7 @@ class InvoiceController extends Controller
 
         InvoiceProduct::insert($product_array);
 
-        return redirect()->route('invoice.index');
+        return redirect()->route('invoice.index')->with('message', 'Invoice added.');
     }
 
     public function edit($id)
